@@ -1,0 +1,349 @@
+:root {
+    --primary-color: #008080;
+    --secondary-color: #4CAF50;
+    --danger-color: #F44336;
+    --text-color: #333;
+    --light-text-color: #555;
+    --box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    --transition-duration: 0.3s;
+    --border-radius: 10px;
+    --hover-scale: 1.1;
+    --button-hover-bg: #006666;
+    --button-active-bg: #004d40;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    perspective: 1200px;
+    overflow: auto;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.calendar-container {
+    width: 100%;
+    max-width: 900px;
+    background-color: white;
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+    position: relative;
+    transition: transform var(--transition-duration), opacity var(--transition-duration);
+    transform-style: preserve-3d;
+    overflow-y: auto;
+    padding-bottom: 80px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.calendar-header h2 {
+    margin: 0;
+    font-size: 2em;
+    color: var(--primary-color);
+    transition: color var(--transition-duration);
+}
+
+.calendar-header h2:hover {
+    color: var(--secondary-color);
+}
+
+.calendar-header select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    transition: background-color var(--transition-duration), transform var(--transition-duration);
+}
+
+.calendar-header select:hover {
+    background-color: #e0f7fa;
+    transform: scale(1.05);
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.day {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color var(--transition-duration), transform var(--transition-duration);
+    box-shadow: var(--box-shadow);
+}
+
+.day:hover {
+    background-color: #e0f7fa;
+    transform: rotateX(10deg) rotateY(10deg) scale(var(--hover-scale));
+}
+
+.day h4 {
+    margin: 0;
+    font-size: 1.5em;
+    color: var(--light-text-color);
+    transition: color var(--transition-duration);
+}
+
+.day:hover h4 {
+    color: var(--primary-color);
+}
+
+.expenses {
+    margin-top: 10px;
+    font-size: 0.9em;
+    text-align: center;
+    color: var(--light-text-color);
+}
+
+.expenses span.spent {
+    color: var(--danger-color);
+    display: block;
+}
+
+.expenses span.earned {
+    color: var(--secondary-color);
+    display: block;
+}
+
+.month-navigation {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.month-navigation button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color var(--transition-duration), transform var(--transition-duration);
+    box-shadow: var(--box-shadow);
+}
+
+.month-navigation button:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-2px) rotateX(5deg);
+}
+
+.month-navigation button:active {
+    background-color: var(--button-active-bg);
+    transform: translateY(0) rotateX(0);
+}
+
+.expense-entry-container {
+    display: none;
+}
+
+.expense-entry-container h2 {
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    font-size: 1.8em;
+    transition: color var(--transition-duration);
+}
+
+.expense-entry-container h2:hover {
+    color: var(--secondary-color);
+}
+
+.entry-list {
+    margin-bottom: 20px;
+}
+
+.entry-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    transition: transform var(--transition-duration);
+}
+
+.entry-item:hover {
+    transform: rotateX(2deg) rotateY(2deg);
+}
+
+.entry-item input {
+    margin-right: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    transition: background-color var(--transition-duration), transform var(--transition-duration);
+}
+
+.entry-item input:hover {
+    background-color: #f1f8e9;
+    transform: scale(1.02);
+}
+
+.entry-item button {
+    background-color: var(--danger-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color var(--transition-duration), transform var(--transition-duration);
+}
+
+.entry-item button:hover {
+    background-color: #d32f2f;
+    transform: rotateX(5deg);
+}
+
+.add-entry-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color var(--transition-duration), transform var(--transition-duration);
+}
+
+.add-entry-btn:hover {
+    background-color: var(--button-hover-bg);
+    transform: rotateX(5deg);
+}
+
+.back-button {
+    background-color: #ccc;
+    color: var(--text-color);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color var(--transition-duration), transform var(--transition-duration);
+}
+
+.back-button:hover {
+    background-color: #aaa;
+    transform: rotateX(5deg);
+}
+
+@media (max-width: 768px) {
+    .calendar-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .calendar-header, .month-navigation {
+        flex-direction: column;
+    }
+
+    .month-navigation button {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .calendar-header h2 {
+        font-size: 1.5em;
+    }
+
+    .calendar-header select {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .month-navigation button {
+        padding: 12px;
+        font-size: 1em;
+    }
+
+    .add-entry-btn, .back-button {
+        padding: 12px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 320px) {
+    .calendar-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .calendar-header h2 {
+        font-size: 1.2em;
+    }
+
+    .calendar-header select {
+        width: 100%;
+        margin-top: 5px;
+    }
+}
+
+.calendar-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    opacity: 0.3;
+    transition: opacity var(--transition-duration);
+}
+
+.calendar-container:hover .calendar-background {
+    opacity: 0.5;
+}
+
+.total-amounts {
+    position: absolute;
+    bottom: 20px;
+    width: calc(100% - 40px);
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.month-navigation button.backup-btn,
+.month-navigation button.restore-btn,
+.month-navigation button.export-btn {
+    background-color: #3f51b5;
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color var(--transition-duration), transform var(--transition-duration);
+    margin: 0 5px;
+}
+
+.month-navigation button.backup-btn:hover,
+.month-navigation button.restore-btn:hover,
+.month-navigation button.export-btn:hover {
+    background-color: #303f9f;
+    transform: rotateX(5deg);
+}

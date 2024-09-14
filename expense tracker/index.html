@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="calendarContainer" class="calendar-container" role="region" aria-labelledby="calendarHeader">
+            <div id="calendarBackground" class="calendar-background" data-src="marvel/january.jpg"></div>
+            <div class="calendar-header" id="calendarHeader">
+                <button onclick="prevMonth()">&#9664;</button>
+                <h2 id="calendarMonthYear">Marvel Calendar</h2>
+                <button onclick="nextMonth()">&#9654;</button>
+                <select id="monthSelect" aria-label="Select Month"></select>
+                <select id="yearSelect" aria-label="Select Year"></select>
+            </div>
+            <div id="calendarGrid" class="calendar-grid"></div>
+            <div class="month-navigation">
+                <button class="add-entry-btn" onclick="showExpenseEntry()">Add Expense</button>
+                <button class="backup-btn" onclick="backupData()">Backup Data</button>
+                <button class="restore-btn" onclick="restoreData()">Restore Data</button>
+                <button class="export-btn" onclick="exportData()">Export Data</button>
+                <div class="total-amounts">
+                    <div>Total Spent: ₹<span id="totalSpent">0</span></div>
+                    <div>Total Earned: ₹<span id="totalEarned">0</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="expense-entry-container" id="expenseEntryContainer" role="region" aria-labelledby="entryHeader">
+            <h2 id="entryHeader">Add Expenses</h2>
+            <div id="entryList" class="entry-list"></div>
+            <button class="add-entry-btn" onclick="addEntry()">Add Entry</button>
+            <button class="back-button" onclick="showCalendar()">Back to Calendar</button>
+            <button class="save-expenses-btn" onclick="saveExpense()">Save Expenses</button>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
